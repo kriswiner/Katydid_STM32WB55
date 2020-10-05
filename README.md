@@ -15,7 +15,7 @@ Absolute orientation estimation module ([USFSMAX](https://hackaday.io/project/16
 
 NeuroSense module with 576 [Neurons](http://www.theneuromorphic.com/nm500/) for hardware machine learning.
 
-The pcb is designed to mount into a small, inexpensive Hammond 1551P ABS container but the mounting holes are also useful for custom (i.e., 3D-printed) enclosures.
+The pcb is designed to mount into a small, inexpensive [Hammond 1551P](https://www.hammfg.com/part/1551PTBU?referer=742) ABS container but the mounting holes are suitable for custom (i.e., 3D-printed) enclosures.
 
 ![](https://user-images.githubusercontent.com/6698410/95035415-e9e76e80-0679-11eb-9037-05f5922a0ec2.jpg)
 
