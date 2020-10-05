@@ -9,7 +9,7 @@ UART, I2C, and SPI ports are exposed at the board edge for expansion.
 
 The basic platform accepts small modules that can be customized for particular applications. The sketches in this repository demonstrate basic function of the platform as well as several plug-in devices already designed including:
 
-EnviroSense module measuring pressure/temperature/humidity (BME280), eqCO2 and VOC (CCS811), RGBW ambient light sensor (VEML6040) and Human presence sensor (AK9754); 
+EnviroSense module measuring pressure/temperature/humidity (BME280), eqCO2 and VOC (CCS811), RGBW ambient light intensity (VEML6040) and Human or animal presence (AK9754); 
 
 Absolute orientation estimation module ([USFSMAX](https://hackaday.io/project/160283-max32660-motion-co-processor/log/182097-max32660-motion-coprocessor-mmc5983ma-low-noise-magnetometer-results)) with heading accuracy of < 0.5 degree rms;
 
