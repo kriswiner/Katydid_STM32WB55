@@ -7,7 +7,7 @@ The device is intended to be programmed via USB using the STM32WB55 Arduino core
 
 UART, I2C, and SPI ports are exposed at the board edge for expansion.
 
-The basic platform accepts small modules that can be customized for particular applications. The sketches in this repository demonstrated basic function of the base device as well as the several plug-in devices including:
+The basic platform accepts small modules that can be customized for particular applications. The sketches in this repository demonstrate basic function of the platform as well as several plug-in devices already designed including:
 
 EnviroSense module measuring pressure/temperature/humidity (BME280), eqCO2 and VOC (CCS811), RGBW ambient light sensor (VEML6040) and Human presence sensor (AK9754); 
 
