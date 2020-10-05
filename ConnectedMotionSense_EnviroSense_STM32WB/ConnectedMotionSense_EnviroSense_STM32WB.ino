@@ -2,6 +2,11 @@
  *  
  *  Demonstrate RTC time keeping and use of RTC alarm for serial output
  *  Demonstrate BMA400 wake-on-motion and sleep-on-no-motion
+ *  Demonstrate EnviroSensor handling including:
+ *     CCS811 wake and interrupt, AK9754 interrupt management
+ *     BME280 and VEML6040 data in forced mode
+ 
+ Main loop is interrupt driven so the MCU can sleep when not handling sensor or RTC interrupts. RTC alarm can be replaced with a timerMillis interrupt
  
    This example code is in the public domain.
 */
