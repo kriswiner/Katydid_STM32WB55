@@ -19,4 +19,4 @@ The pcb is designed to mount into a small, inexpensive Hammond 1551P ABS contain
 
 ![](https://user-images.githubusercontent.com/6698410/95035415-e9e76e80-0679-11eb-9037-05f5922a0ec2.jpg)
 
-![](https://user-images.githubusercontent.com/6698410/95035419-ef44b900-0679-11eb-84a7-3c445511f251.jpg)
+ For questions about this project please contact Kris WIner at tleracorp@gmail.com.
