@@ -1,7 +1,7 @@
 # ConnectedMotionSense
 Arduino sketches for the STM32WB-based Connected Motion Sense wearable platform
 
-BLE-enabled wearable device for ergonometrics, gait/head/limb/hand tracking, robotics, etc. Intended as an easy-to-use, ultra-low-power IoT platform. Host is the [STM32WB55CG](https://www.st.com/en/microcontrollers-microprocessors/stm32wb55cg.html) MCU in QFN48 package with 1 MByte flash and 256 kB of SRAM with clock speed up to 64 MHz. The platform includes a power on mechanical switch, 1 S LiPo battery charger, 16 MByte QSPI flash, BMA400 accelerometer for wake-on-motion, and a secure element for network key storage and authentication. 
+BLE-enabled wearable device for ergonometrics, gait/head/limb/hand tracking, robotics, etc. Intended as an easy-to-use, ultra-low-power IoT platform. Host is the [STM32WB55CG](https://www.st.com/en/microcontrollers-microprocessors/stm32wb55cg.html) MCU in QFN48 package with 1 MByte flash and 256 kB of SRAM with clock speed up to 64 MHz. The platform includes a power on mechanical switch, 1S LiPo battery charger, 16 MByte QSPI flash, BMA400 accelerometer for wake-on-motion, and a secure element for network key storage and authentication. 
 
 The device is intended to be programmed via USB using the STM32WB55 Arduino core created by Thomas Roell but includes a tag connect for non-USB programming and debugging. 
 
