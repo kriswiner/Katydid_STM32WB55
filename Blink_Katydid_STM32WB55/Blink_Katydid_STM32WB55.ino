@@ -85,7 +85,6 @@ void loop()
   if(SerialDebug)   Serial.print("VBAT = "); Serial.println(VBAT, 2); 
 
   digitalWrite(myLed, HIGH); delay(10);  digitalWrite(myLed, LOW); // toggle blue led on
-
   
   } /* End of RTC Timer Handling */
   
