@@ -1,16 +1,23 @@
-/* Basic blink sketch for Connected Motion Sensor.v01
+/*  Basic blink sketch for Katydid v.02a (aka Connected Motion Sensor.v02a)
+ *  
+ *  2021 Copyright Tlera Corporation
  *  
  *  Demonstrate RTC time keeping and RTC alarm, 
  *  Demonstrate internal functions like measurement of:
  *     USB connect state, MCU temperature, analog reference voltage, and battery voltage  
+ *     
+ *  Demonstrate use of STOP mode; device uses ~6 uA in STOP mode due to MCU current ~2 uA),
+ *  presence of SPI Flash (~2 uA) and STBC08 battery charger (~2 uA).
  
    This example code is in the public domain.
+
+   All uses permitted without warranty with attribution.
 */
 #include "STM32WB.h"
 #include <RTC.h>
 
 const char        *build_date = __DATE__;   // 11 characters MMM DD YYYY
-const char        *build_time = __TIME__;   // 8 characters HH:MM:SS
+const char        *build_time = __TIME__;   //  8 characters HH:MM:SS
 
 float VBAT, VDDA, Temperature;
 uint32_t UID[3] = {0, 0, 0};
@@ -21,8 +28,7 @@ uint8_t seconds, minutes, hours, day, month, year;
 uint8_t Seconds, Minutes, Hours, Day, Month, Year;
 volatile bool alarmFlag = false; // for RTC alarm interrupt
 
-const uint8_t myLed1 = LED_BUILTIN; // blue led
-const uint8_t myLed2 = 7; // orange led
+const uint8_t myLed = LED_BUILTIN; // blue led
 
 void setup() 
 {
@@ -33,13 +39,11 @@ void setup()
   STM32WB.getUID(UID);
   if(SerialDebug) {Serial.print("STM32L4 MCU UID = 0x"); Serial.print(UID[0], HEX); Serial.print(UID[1], HEX); Serial.println(UID[2], HEX);} 
 
-  pinMode(myLed1, OUTPUT);
-  digitalWrite(myLed1, LOW);  // start with led1 off, since active HIGH
-  pinMode(myLed2, OUTPUT);
-  digitalWrite(myLed2, LOW);  // start with led2 off, since active HIGH
+  pinMode(myLed, OUTPUT);
+  digitalWrite(myLed, LOW);  // start with led off, since active HIGH
 
   // Set the time
-  SetDefaultRTC();
+  SetDefaultRTC(); // set RTC to latest time using the compile time
   
   /* Set up the RTC alarm interrupt */
   RTC.enableAlarm(RTC.MATCH_ANY); // alarm once a second
@@ -80,12 +84,12 @@ void loop()
   if(USBConnected && SerialDebug) Serial.println("USB connected!");
   if(SerialDebug)   Serial.print("VBAT = "); Serial.println(VBAT, 2); 
 
-  digitalWrite(myLed1, HIGH); delay(1);  digitalWrite(myLed1, LOW); // toggle blue led on
-  digitalWrite(myLed2, HIGH); delay(1);  digitalWrite(myLed2, LOW); // toggle orange led on
+  digitalWrite(myLed, HIGH); delay(10);  digitalWrite(myLed, LOW); // toggle blue led on
+
   
   } /* End of RTC Timer Handling */
   
-// STM32WB.stop(5000);
+ STM32WB.stop(); // stay in lowest power mode until next interrupt (RTC Alarm)
 } /* End of Main Loop */
 
 
@@ -94,21 +98,22 @@ void loop()
 void alarmMatch()
 {
   alarmFlag = true;
+  STM32WB.wakeup();
 }
 
 
-void SetDefaultRTC()  // Sets the RTC to the FW build date-time...
+void SetDefaultRTC()                                                                                 // Function sets the RTC to the FW build date-time...
 {
   char Build_mo[3];
+  String build_mo = "";
 
-  // Convert month string to integer
-
-  Build_mo[0] = build_date[0];
+  Build_mo[0] = build_date[0];                                                                       // Convert month string to integer
   Build_mo[1] = build_date[1];
   Build_mo[2] = build_date[2];
-
-  String build_mo = Build_mo;
-
+  for(uint8_t i=0; i<3; i++)
+  {
+    build_mo += Build_mo[i];
+  }
   if(build_mo == "Jan")
   {
     month = 1;
@@ -147,19 +152,20 @@ void SetDefaultRTC()  // Sets the RTC to the FW build date-time...
     month = 12;
   } else
   {
-    month = 1;     // Default to January if something goes wrong...
+    month = 1;                                                                                       // Default to January if something goes wrong...
   }
-
-  // Convert ASCII strings to integers
-  day     = (build_date[4] - 48)*10 + build_date[5] - 48;  // ASCII "0" = 48
+  if(build_date[4] != 32)                                                                            // If the first digit of the date string is not a space
+  {
+    day   = (build_date[4] - 48)*10 + build_date[5]  - 48;                                           // Convert ASCII strings to integers; ASCII "0" = 48
+  } else
+  {
+    day   = build_date[5]  - 48;
+  }
   year    = (build_date[9] - 48)*10 + build_date[10] - 48;
-  hours   = (build_time[0] - 48)*10 + build_time[1] - 48;
-  minutes = (build_time[3] - 48)*10 + build_time[4] - 48;
-  seconds = (build_time[6] - 48)*10 + build_time[7] - 48;
-
-  // Set the date/time
-
-  RTC.setDay(day);
+  hours   = (build_time[0] - 48)*10 + build_time[1]  - 48;
+  minutes = (build_time[3] - 48)*10 + build_time[4]  - 48;
+  seconds = (build_time[6] - 48)*10 + build_time[7]  - 48;
+  RTC.setDay(day);                                                                                   // Set the date/time
   RTC.setMonth(month);
   RTC.setYear(year);
   RTC.setHours(hours);
