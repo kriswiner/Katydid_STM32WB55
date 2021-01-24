@@ -7,6 +7,10 @@ The 34 mm x 34 mm device is intended to be programmed via USB using the STM32WB5
 
 UART, I2C, and SPI ports are exposed at the board edge for expansion.
 
+LIR2450 3.6 V 120  mAH rechargeable coin cell or standard LiPo battery via JST connector.
+
+The platform is an ultra-low-power device with 6 uA sleep current; sleep current due mainly to ~2 uA STBC08 battery charger, ~2 uA QSPI flash, and ~2 uA STM32WB55 MCU.
+
 The basic platform accepts small (12.8 mm x 12.9 mm) [modules](https://oshpark.com/shared_projects/DgFZd3nx) that can be customized for particular applications. The sketches in this repository demonstrate basic function of the platform as well as several plug-in devices already designed including:
 
 EnviroSense module measuring pressure/temperature/humidity (BME280), eqCO2 and VOC (CCS811), RGBW ambient light intensity (VEML6040) and Human or animal presence (AK9754); 
@@ -19,7 +23,7 @@ The 34 mm x 34 mm pcb is designed to mount into a small, inexpensive [Hammond 15
 
 The hardware design is open source and is [available](https://oshpark.com/shared_projects/0gf14yL3) in the OSH Park shared space.
 
-First production will happen in February with sales at Tindie by March.
+First production will happen in February with sales on [Tindie](https://www.tindie.com/stores/tleracorp/) by March.
 
 ![](https://user-images.githubusercontent.com/6698410/105618550-6cb54600-5d9d-11eb-872f-713a82b0caf6.jpg)
 ![](https://user-images.githubusercontent.com/6698410/105618544-4f807780-5d9d-11eb-927c-1f55176702c0.jpg)
