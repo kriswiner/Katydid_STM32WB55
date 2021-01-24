@@ -17,10 +17,7 @@
 
 #define I2C_BUS    Wire               // Define the I2C bus (Wire instance) you wish to use
 
-I2Cdev             i2c_0(&I2C_BUS);   // Instantiate the I2Cdev object and point to the desired I2C bus
-
-const char        *build_date = __DATE__;   // 11 characters MMM DD YYYY
-const char        *build_time = __TIME__;   // 8 characters HH:MM:SS
+I2Cdev             i2c_0(&I2C_BUS);   // Instantiate the I2Cdev object and point to the desired I2C bus//
 
 float VBAT, VDDA, Temperature;
 uint32_t UID[3] = {0, 0, 0};
@@ -127,15 +124,12 @@ void setup()
   Serial.print("PAGESIZE = ");  Serial.println(SFLASH.pageSize());
   Serial.print("LENGTH = ");    Serial.println(SFLASH.length()); Serial.println(" ");
 
-  // Set the time
-  SetDefaultRTC();
-  
   /* Set up the RTC alarm interrupt */
   RTC.enableAlarm(RTC.MATCH_ANY); // alarm once a second
   
   RTC.attachInterrupt(alarmMatch); // interrupt every time the alarm sounds
 
-  attachInterrupt(BMA400_intPin1, myinthandler1, RISING);  // attach wake-up    interrupt for INT1 pin output of BMA400
+  attachInterrupt(BMA400_intPin1, myinthandler1, RISING);  // attach in-motion  interrupt for INT1 pin output of BMA400
   attachInterrupt(BMA400_intPin2, myinthandler2, RISING);  // attach no-motion  interrupt for INT2 pin output of BMA400 
 
   BMA400.getStatus(); // read status of interrupts to clear
@@ -240,75 +234,4 @@ void alarmMatch()
 {
   alarmFlag = true;
   STM32WB.wakeup();
-}
-
-
-void SetDefaultRTC()  // Sets the RTC to the FW build date-time...
-{
-  char Build_mo[3];
-
-  // Convert month string to integer
-
-  Build_mo[0] = build_date[0];
-  Build_mo[1] = build_date[1];
-  Build_mo[2] = build_date[2];
-
-  String build_mo = Build_mo;
-
-  if(build_mo == "Jan")
-  {
-    month = 1;
-  } else if(build_mo == "Feb")
-  {
-    month = 2;
-  } else if(build_mo == "Mar")
-  {
-    month = 3;
-  } else if(build_mo == "Apr")
-  {
-    month = 4;
-  } else if(build_mo == "May")
-  {
-    month = 5;
-  } else if(build_mo == "Jun")
-  {
-    month = 6;
-  } else if(build_mo == "Jul")
-  {
-    month = 7;
-  } else if(build_mo == "Aug")
-  {
-    month = 8;
-  } else if(build_mo == "Sep")
-  {
-    month = 9;
-  } else if(build_mo == "Oct")
-  {
-    month = 10;
-  } else if(build_mo == "Nov")
-  {
-    month = 11;
-  } else if(build_mo == "Dec")
-  {
-    month = 12;
-  } else
-  {
-    month = 1;     // Default to January if something goes wrong...
-  }
-
-  // Convert ASCII strings to integers
-  day     = (build_date[4] - 48)*10 + build_date[5] - 48;  // ASCII "0" = 48
-  year    = (build_date[9] - 48)*10 + build_date[10] - 48;
-  hours   = (build_time[0] - 48)*10 + build_time[1] - 48;
-  minutes = (build_time[3] - 48)*10 + build_time[4] - 48;
-  seconds = (build_time[6] - 48)*10 + build_time[7] - 48;
-
-  // Set the date/time
-
-  RTC.setDay(day);
-  RTC.setMonth(month);
-  RTC.setYear(year);
-  RTC.setHours(hours);
-  RTC.setMinutes(minutes);
-  RTC.setSeconds(seconds);
 }
