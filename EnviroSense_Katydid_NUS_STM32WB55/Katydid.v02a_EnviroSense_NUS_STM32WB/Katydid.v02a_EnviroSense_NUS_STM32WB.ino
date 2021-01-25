@@ -287,12 +287,12 @@ void setup()
   Serial.print("LENGTH = ");    Serial.println(SFLASH.length()); Serial.println(" ");
   Serial.println(" ");
 
-  // Erase entire flash memory before data logging
-  uint32_t address;
-  for (address = 0; address < 4096 * 1024 * 4; address += SFLASH.blockSize()) 
-  {
-        SFLASH.erase(address);
-  }
+  // Erase entire flash memory, better to do this before data logging do this beforehand
+  //uint32_t address;
+  //for (address = 0; address < 4096 * 1024 * 4; address += SFLASH.blockSize()) 
+  //{
+  //      SFLASH.erase(address);
+  //}
 
   digitalWrite(myLed, LOW);  // start with led1 off, since active HIGH
   
@@ -326,13 +326,7 @@ void setup()
 
 
 void loop() 
-{
-    if (!BLE.advertising() && !BLE.connected()) 
-    {
-         BLE.advertise();
-    }
-
-    
+{  
   /* AK9754 Human detection */
   if (AK9754_int_flag)
   {
@@ -583,6 +577,11 @@ void loop()
 
   if(BLETx_flag == true) {  // On interrupt, read data
      BLETx_flag = false;    // reset newData flag
+   
+    if (!BLE.advertising() && !BLE.connected()) 
+    {
+         BLE.advertise();
+    }
 
   // Send some data to the BLE Serial Console
   SerialBLE.print("T = "); 
