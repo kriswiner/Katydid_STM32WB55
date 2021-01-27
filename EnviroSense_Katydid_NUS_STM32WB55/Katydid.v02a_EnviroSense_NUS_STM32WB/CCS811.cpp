@@ -114,8 +114,7 @@ void CCS811::checkCCS811Status()
        temp[3] |= 1;
       }
 
-      Wire.transfer(CCS811_ADDRESS, &temp[0], 5, NULL, 0);
-
+      _i2c_bus->writeBytes(CCS811_ADDRESS, CCS811_ENV_DATA, 4, &temp[1]);
   }
 
    void CCS811::readCCS811Data(uint8_t * destination)
