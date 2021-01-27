@@ -11,7 +11,6 @@
 */
 
 #include "AK9754.h"
-#define Serial Serial2
 
   AK9754::AK9754(I2Cdev* i2c_bus){
   _i2c_bus = i2c_bus;
