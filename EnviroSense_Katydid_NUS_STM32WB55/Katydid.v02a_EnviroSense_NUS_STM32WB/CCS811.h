@@ -37,6 +37,7 @@ class CCS811
   public: 
   CCS811(I2Cdev* i2c_bus);
   void checkCCS811Status();
+  uint8_t getStatus();
   void CCS811init(uint8_t AQRate);
   uint8_t getChipID();
   void compensateCCS811(int32_t compHumidity, int32_t compTemp);
