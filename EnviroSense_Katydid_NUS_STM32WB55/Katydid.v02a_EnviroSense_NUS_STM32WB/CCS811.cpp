@@ -60,7 +60,15 @@ void CCS811::checkCCS811Status()
   }
 
 
-  void CCS811::CCS811init(uint8_t AQRate)
+  uint8_t CCS811::getStatus() 
+{
+   // Check CCS811 status
+  uint8_t status = _i2c_bus->readByte(CCS811_ADDRESS, CCS811_STATUS);
+  return status;
+  }
+
+
+void CCS811::CCS811init(uint8_t AQRate)
   {
     // initialize CCS811 and check version and status
   byte HWVersion = _i2c_bus->readByte(CCS811_ADDRESS, CCS811_HW_VERSION);
