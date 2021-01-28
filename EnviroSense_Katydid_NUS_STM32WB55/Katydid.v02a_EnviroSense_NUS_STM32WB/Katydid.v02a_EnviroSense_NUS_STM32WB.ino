@@ -373,25 +373,30 @@ void loop()
     if(newCCS811Data == true) {  // On interrupt, read data
        newCCS811Data = false;  // reset newData flag
      
-    digitalWrite(CCS811_wakePin, LOW); // set LOW to enable the CCS811 air quality sensor
-    CCS811.readCCS811Data(rawData);
-    CCS811.compensateCCS811(compHumidity, compTemp); // compensate CCS811 using BME280 humidity and temperature
-    digitalWrite(CCS811_wakePin, HIGH); // set LOW to enable the CCS811 air quality sensor 
+       CCS811Status = CCS811.getStatus();
+       if(CCS811Status & 0x08) 
+       { 
+          digitalWrite(CCS811_wakePin, LOW); // set LOW to enable the CCS811 air quality sensor
+          CCS811.readCCS811Data(rawData);
+          CCS811.compensateCCS811(compHumidity, compTemp); // compensate CCS811 using BME280 humidity and temperature
+          digitalWrite(CCS811_wakePin, HIGH); // set LOW to enable the CCS811 air quality sensor 
 
-    eCO2 = (uint16_t) ((uint16_t) rawData[0] << 8 | rawData[1]);
-    TVOC = (uint16_t) ((uint16_t) rawData[2] << 8 | rawData[3]);
-    Current = (rawData[6] & 0xFC) >> 2;
-    Voltage = (float) ((uint16_t) ((((uint16_t)rawData[6] & 0x02) << 8) | rawData[7])) * (1.65f/1023.0f); 
+          eCO2 = (uint16_t) ((uint16_t) rawData[0] << 8 | rawData[1]);
+          TVOC = (uint16_t) ((uint16_t) rawData[2] << 8 | rawData[3]);
+          Current = (rawData[6] & 0xFC) >> 2;
+          Voltage = (float) ((uint16_t) ((((uint16_t)rawData[6] & 0x02) << 8) | rawData[7])) * (1.65f/1023.0f); 
 
-    // CCS811 data Print here since fastest data rate is 1 Hz and we typically run at either 10 s or 60 s period
-    Serial.println("CCS811:");
-    Serial.print("Eq CO2 in ppm = "); Serial.println(eCO2);
-    Serial.print("TVOC in ppb = "); Serial.println(TVOC);
-    Serial.print("Sensor current (uA) = "); Serial.println(Current);
-    Serial.print("Sensor voltage (V) = "); Serial.println(Voltage, 2);  
-    Serial.println(" ");
+          // CCS811 data Print here since fastest data rate is 1 Hz and we typically run at either 10 s or 60 s period
+          Serial.println("CCS811:");
+          Serial.print("Eq CO2 in ppm = "); Serial.println(eCO2);
+          Serial.print("TVOC in ppb = "); Serial.println(TVOC);
+          Serial.print("Sensor current (uA) = "); Serial.println(Current);
+          Serial.print("Sensor voltage (V) = "); Serial.println(Voltage, 2);  
+          Serial.println(" ");
+       }
     }          
     
+ 
   /*Logger Timer*/
   /* Log some data to the QSPI flash */
   if(Logger_flag) {
