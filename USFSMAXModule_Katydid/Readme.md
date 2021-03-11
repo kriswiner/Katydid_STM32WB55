@@ -1,1 +1,1 @@
-Basic sketch for the USFSMAX Module.
+Basic sketch for the USFSMAX Module. See the description [here](https://github.com/gregtomasch/USFSMAX_MMC_Module) for details about how to make changes to the configuration file for your specific location and to get the best results using the USFSMAX module.
