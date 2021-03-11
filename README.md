@@ -21,7 +21,7 @@ NeuroSense module with 576 [Neurons](http://www.theneuromorphic.com/nm500/) for 
 
 The 34 mm x 34 mm pcb is designed to mount into a small, inexpensive [Hammond 1551P](https://www.hammfg.com/part/1551PTBU?referer=742) ABS container but the mounting holes are suitable for custom (i.e., 3D-printed) enclosures.
 
-The hardware design is open source and is [available](https://oshpark.com/shared_projects/0gf14yL3) in the OSH Park shared space.
+The hardware design is open source and is [available](https://oshpark.com/shared_projects/0hElSrib) in the OSH Park shared space.
 
 First production will happen in February with sales on [Tindie](https://www.tindie.com/stores/tleracorp/) by March.
 
