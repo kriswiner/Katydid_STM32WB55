@@ -23,7 +23,7 @@ The 34 mm x 34 mm pcb is designed to mount into a small, inexpensive [Hammond 15
 
 The hardware design is open source and is [available](https://oshpark.com/shared_projects/0hElSrib) in the OSH Park shared space.
 
-First production will happen in February with sales on [Tindie](https://www.tindie.com/stores/tleracorp/) by March.
+Katydid is available on [Tindie](https://www.tindie.com/products/tleracorp/katydid-wearable-ble-sensor-board/).
 
 ![](https://user-images.githubusercontent.com/6698410/105618550-6cb54600-5d9d-11eb-872f-713a82b0caf6.jpg)
 ![](https://user-images.githubusercontent.com/6698410/105618544-4f807780-5d9d-11eb-927c-1f55176702c0.jpg)
