@@ -27,5 +27,6 @@ Katydid is available on [Tindie](https://www.tindie.com/products/tleracorp/katyd
 
 ![](https://user-images.githubusercontent.com/6698410/105618550-6cb54600-5d9d-11eb-872f-713a82b0caf6.jpg)
 ![](https://user-images.githubusercontent.com/6698410/105618544-4f807780-5d9d-11eb-927c-1f55176702c0.jpg)
+![](https://user-images.githubusercontent.com/6698410/111038455-e94bc480-83dd-11eb-8bb0-49174ff93ad7.jpg)
 
  For questions about this project please contact Kris Winer at tleracorp@gmail.com.
