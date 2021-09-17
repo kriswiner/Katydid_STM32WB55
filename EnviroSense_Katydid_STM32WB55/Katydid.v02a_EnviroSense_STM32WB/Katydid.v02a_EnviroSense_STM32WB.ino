@@ -92,8 +92,8 @@ BME280 BME280(&i2c_0); // instantiate BME280 class
 
 
 // CCS811 definitions
-#define CCS811_intPin  5
-#define CCS811_wakePin A2
+#define CCS811_intPin  A2
+#define CCS811_wakePin 5
 
 /* Specify CCS811 sensor parameters
  *  Choices are   dt_idle , dt_1sec, dt_10sec, dt_60sec
