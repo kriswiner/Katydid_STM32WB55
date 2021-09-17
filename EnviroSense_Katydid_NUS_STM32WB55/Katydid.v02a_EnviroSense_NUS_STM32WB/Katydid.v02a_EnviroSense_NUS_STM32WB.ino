@@ -162,7 +162,7 @@ volatile bool AK9754_int = false;
 
 AK9754 AK9754(&i2c_0);
 
-BLEUart SerialBLE(BLEUartProtocol::NORDIC);
+BLEUart SerialBLE(BLE_UART_PROTOCOL_NORDIC);
 
 
 void setup() 
